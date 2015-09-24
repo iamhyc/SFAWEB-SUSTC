@@ -1,0 +1,61 @@
+<script type="text/javascript">
+  localStorage.pageView = "index";
+</script>
+
+<div class= "container">
+	
+  <div id="carousel-captions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-captions" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-captions" data-slide-to="1" class=""></li>
+      <li data-target="#carousel-captions" data-slide-to="2" class=""></li>
+    </ol>
+      
+    <div class="carousel-inner" role="listbox">
+      <% for(var i = 0; i < images.length; i++){ %>
+        <% if (i === 0){ %>
+          <div class="item active">
+        <% } else{ %>
+          <div class="item">
+        <% } %>
+          <div style="max-height:500px">
+          <a href=<%= "/posters/details/" + images[i]._id %> >
+              <img src=<%= images[i].img_path %> alt=<%= images[i].info[0] %> data-holder-rendered="true" style="height:100%;width:100%">
+          </a>
+          </div>
+          <div class="carousel-caption">
+              <h3 id="second-slide-label"><%= images[i].title %></h3>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-captions" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+  <a class="right carousel-control" href="#carousel-captions" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+  </a>
+  </div>
+
+<br />
+
+	<div class="panel panel-default">
+  		<div class="panel-heading">
+    		<h1 class="panel-title">About US</h1>
+  		</div>
+  		<div class="panel-body">
+    	   <p>恭喜你发现了一度尘封于历史中的，由设计无力的后端程序员所写的无趣网页</p>
+         <p>但请相信，我们的初衷是为了更好的服务更多的幻友</p>
+         <p>如果你想与我们一同改变这现状，请加入我们的<a href="">团队</a>，为幻协繁荣昌盛贡献一份力量</p>
+         <p class="text-right" style="font-weight:bold">幻想自有力量！</p>
+  		</div>
+	</div>
+</div>
+
+<div class="hide">
+  <h1>Weekly</h1><p class="text-muted">weekly</p>
+  <h1>Poster</h1><p class="text-primary">posters</p>
+</div>

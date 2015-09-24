@@ -1,0 +1,53 @@
+<script type="text/javascript">
+  localStorage.pageView = "posters";
+  function toDetail(id){
+    location.href = "/posters/details/" + id;
+  }
+</script>
+
+<div class="panel panel-default" style="width:100%">
+  		<div class="panel-heading text-center">
+    		<h4 style="margin:0">这里是海报</h4>
+  		</div>
+  		<div class="panel-body" style="background-color:#FFF">
+    		<% posts.forEach(function(pic){ 
+          console.log(pic)%>
+				<!--
+	  				<div class="row">
+						<div class="col-xs-12 col-sm-6 col-md-8">
+    						<a href="#" class="thumbnail">
+      							<img src=<%= pic.img_addr %> alt="...">
+    						</a>
+  						</div>
+  	  				</div>
+  	  			-->
+  	  		<div class="panel panel-default" style="background-color:#F2F2F2">
+  				  <div class="panel-body">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" data-src="holder.js/64x64" alt="NoImg" style="width:120px;height:120px" data-holder-rendered="true" src="<%= pic.img_path %>">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <article>
+                    <h2 style="cursor:pointer">
+                      <span onclick="toDetail('<%= pic._id %>')" style="color:#7491A8"><%= pic.title %></span>
+                    </h2>
+                    <p class="text-muted">
+                      Editor:<%= pic.editor %>
+                      <span ><%= pic.post_time %></span>
+                    </p>
+
+                    <% pic.info.split(' ').forEach(function(data){ %>
+                      <span class="label label-primary" style="font-size:14px"><%= data %></span>
+                    <% }) %>
+                  </article>
+                </div>
+              </div>
+            </div>
+				  </div>
+			<% }) %>
+  		</div>
+</div>
+

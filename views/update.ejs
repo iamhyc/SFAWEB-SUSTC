@@ -1,0 +1,36 @@
+<script type="text/javascript">
+  function checkPwd(){
+    alert("I'm here!")
+    $('#myModal').modal('toggle');
+  }
+</script>
+<div class="page-header">
+  <h1>密码变更</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-3 col-md-offset-1">
+	<form class="form-horizontal" method="post">
+
+      <div class="form-group">
+      <label for="Password1">原密码</label>
+      <input type="password" class="form-control" name="old_pwd" id="Password1" placeholder="" autocomplete="off" autofocus>
+      </div>
+  		<div class="form-group">
+    	<label for="Password2">新密码</label>
+    	<input type="password" class="form-control" name="new_pwd" id="Password2" placeholder="" autocomplete="off">
+  		</div>
+      <div class="form-group">
+      <label for="Password3">重新输入密码</label>
+      <input type="password" class="form-control" name="re_pwd" id="Password3" placeholder="" autocomplete="off">
+      </div>
+
+  		<br />
+      <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <div class="container btn-group" role="group">
+        <button type="submit" class="btn btn-default">Submit</button>
+      </div>
+      </div>
+	</form>
+  </div>
+</div>

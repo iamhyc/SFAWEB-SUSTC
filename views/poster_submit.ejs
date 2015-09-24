@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="/editor/themes/simple/simple.css" />
+<script charset="utf-8" src="/editor/kindeditor.js"></script>
+<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+<script>
+        $(function(){
+          document.getElementById("uploadImage").addEventListener('change',preview, false);
+        });
+
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#postContent', {
+                  items: [
+                  'source', '|', 'undo', 'redo', '|', 'preview', 'template', 'cut', 'copy', 'paste','plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright','justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent',   'subscript','superscript', 'clearhtml', 'quickformat',  '|', 'fullscreen', '/','formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold','italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage', 'insertfile', 'table', 'hr', 'emoticons', 'pagebreak','link', 
+                  ],
+                  height:"350px",
+                  themeType: 'simple',
+                  cssPath : '/css/index.css',
+                  uploadJson: '/posters/uploadImg'
+                });
+        });
+
+
+        function preview(){
+          var file = this.files[0]; 
+          var reader = new FileReader(); 
+          reader.readAsDataURL(file);
+          /* */ 
+          reader.onload = function(e) {
+            $('#thumb').attr('src', this.result);
+          }
+
+        }
+        function mySubmit(){
+          window.editor.sync();
+          var tmp = {
+            title : $("#postTitle").val(),
+            info : $("#postInfo").val(),
+            content : $("#postContent").val(),
+            img_src : $("#thumb").attr("src")
+          };
+          $.post("/posters/submit", tmp, function(msg){
+            if(msg){
+              alert("上传成功！");
+              location.href = "/posters";
+            }
+          });
+        }
+
+</script>
+
+<div class="container">
+  <div class="col-md-8 col-md-offset-1">
+    <form class="form-horizontal" method="post">
+      <div class="form-group">
+        <label for="InputTitle">Title</label>
+        <input id="postTitle" type="text" class="form-control" name="title" autocomplete="off" placeholder="Title">
+      </div>
+  
+      <div class="form-group">
+        <label for="InputInfo">Description Tab (split by [space])</label>
+        <input id="postInfo" type="text" class="form-control" name="info" autocomplete="off" placeholder="No more than 5 words per Tab">
+      </div>
+
+      <div class="form-group">
+        <label for="InputImg">Thumbnail</label>
+        <input id="uploadImage" class="hidden" type="file" accept="image/jpeg,image/png,image/gif" name="thumb"/>
+        <div class="row text-center">
+          <div class="col-xs-6 col-md-3">
+            <a href="#" class="thumbnail">
+              <img id="thumb" data-src="holder.js/100%x180" alt="点我上传" style="height:180px;width:100%;display:block;" src="" data-holder-rendered="true" onclick="$('#uploadImage').click();">
+            </a>
+          </div>
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <label for="InputContent"></label>
+        <textarea class="form-control" id="postContent" name="content" autocomplete="off"></textarea>
+      </div>
+      <br />
+      <button type="button" class="btn btn-default" onclick="mySubmit()">Submit</button>
+    </form>
+  </div>
+</div>

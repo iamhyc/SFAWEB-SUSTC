@@ -1,0 +1,82 @@
+<script>
+  localStorage.pageView = "posters";
+</script>
+
+<style type="text/css">
+  img { width:100%; }
+</style>
+
+<div class="container">
+  <div class="container">
+  <h1> <%= doc.title %></h1>
+  <hr />
+	<p class="text-muted">Editor:<%= doc.editor %> | <%= doc.post_time %></p>
+	<% doc.info.split(' ').forEach(function(data){ %>
+        <span class="label label-primary" style="font-size:14px"><%= data %></span>&nbsp;
+  <% }) %>
+  </div>
+
+  <div class="container">
+    <% if (user&&user.flag){ %>
+      <br />
+      <a href=<%= "/posters/edit/" + doc._id%>><span class="glyphicon glyphicon-edit"></span>编辑</a>
+      &nbsp;&nbsp;
+      <a href="" data-toggle="modal" data-target="#gridSystemModal"><span class="glyphicon glyphicon-trash"></span>删除</a>
+    <% } %>
+  </div>
+
+	<div class="row">
+    <div class="container col-md-8 col-sm-12 col-xs-12">
+    <br />
+    <%- doc.content %>
+    <br /><br />
+    <% if (doc.comments) { %>
+      <% for (var i = 0; i < doc.comments.length; i++){ %>
+      <div class="panel panel-default">
+          <div class="panel-body">
+            <article>
+          <h3><%= doc.comments[i].editor %></h3>
+          <p class="text-muted">Time:<%= doc.comments[i].post_time %></p>
+          <div>
+            <%- doc.comments[i].content %>
+          </div>
+          </article>
+        </div>
+      </div>
+      <% }} %>
+    </div>
+  </div>				
+
+		<hr/><br/>
+		<div class="panel panel-default">
+  			<div class="panel-heading">吐槽专区</div>
+  			<div class="panel-body">
+        			<textarea class="form-control" id="topic_reply_form" name="content" autocomplete="off" rows="8"></textarea>
+        			<br />
+        			<div style="max-width:20%">
+        			<button onclick="check_reply()" class="btn btn-block btn-primary">提交</button>
+        			</div>
+  			</div>
+		</div>
+
+
+    <div class="modal fade" id="gridSystemModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Confirm</h4>
+          </div>
+          
+          <div class="modal-body">
+            <p>Are you sure to delete this poster?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            <a href=<%= "/posters/delete/" + doc._id %> type="button" class="btn btn-primary">&nbsp;Yes&nbsp;</a>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>

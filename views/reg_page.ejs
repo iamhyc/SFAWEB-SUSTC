@@ -1,0 +1,38 @@
+<script src="/javascripts/webServerJs.js"></script>
+
+<div class="container">
+	<div class="page-header">
+  		<h1>来挑选你喜欢的ID ~ <small>Legend to be WRITTEN</small></h1>
+	</div>
+	<p class="lead">区间：00002 —— 00999</p>
+	<form class="form-inline">
+		<div class="form-group has-feedback" id="textin">
+  			<label class="control-label" for="id_text"></label>
+  			<span aria-hidden='true' id="error-tick"></span>
+  			<input type="text" class="form-control" id="id_text" onfocus="rmErr()" autocomplete="off">
+		</div>
+		<button onclick="check()" type="button" class="btn btn-default">Confirm</button>
+	</form>
+	<br />
+	<div class="panel panel-default">
+  		<div class="panel-heading">
+    		<h3 class="panel-title">以下ID已被使用</h3>
+  		</div>
+
+  		<div class="panel-body">
+  			<% function zeron(i){
+				i = i.toString();
+				while (i.length < 5){
+				i = '0' + i;
+				}
+			return i;
+			}%>
+    		<% for (var i = 1; i <= 1000; i++){ 
+    			   if (flags[i]){ %>
+    				<span class="label label-default" style="font-size:20px"><%= zeron(i) %></span>
+    				
+    		<% 	   }} %>
+  		</div>
+	</div>
+	
+</div>

@@ -1,0 +1,35 @@
+<script>
+	function checkIt(){
+		var name= $('#Name').val();
+		var code= $('#Code').val();
+		$.post("/users/reg", {"name": name, "code":code}, function(dist){
+			if (dist == 'error') {
+				alert('数据库中无匹配!');
+			}
+			else window.location.replace('/users/reg_page')
+		})	
+	}
+</script>
+
+<div class="page-header">
+  <h1>会员验证 <small> 幻想驱动未来</small></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-3 col-sm-10 col-xs-10 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+	<form class="form-horizontal">
+		<div class="form-group">
+    	<label for="Code">学号</label>
+    	<input type="text" class="form-control" name="user_code" id="Code" autocomplete="off" autofocus placeholder="School ID">
+  		</div>
+
+  		<div class="form-group">
+    	<label for="Name">姓名</label>
+    	<input type="text" class="form-control" name="user_name" id="Name" autocomplete="off"placeholder="Name">
+  		</div>
+
+  		<br />
+  		<button onclick ="checkIt()" type="button" class="btn btn-default">Verify</button>
+	</form>
+  </div>
+</div>

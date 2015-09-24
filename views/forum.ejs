@@ -1,0 +1,55 @@
+<div class="container bs-docs-container">
+	<div class="row">
+  		<div class="col-xs-6 col-md-3">
+    	<a href="#" class="thumbnail">
+      	<img src="/images/sfa.png" alt="...">
+    	</a>
+  		</div>
+		<h2>Welcome Aboard, <%= user.name %> !</h2>
+    <hr />
+		<h4>ID: <%= user.id %></h4>
+		<h4>LastLoginTime: <%= user.log_time %></h4>
+    <br /><br /><h4>会员功能与特权正在加紧制作中q(≧▽≦q)</h4>
+	</div>
+
+  <div class="panel panel-default">
+  <!-- Default panel contents -->
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong>借阅列表</strong></h3>
+    </div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>书名</th>  <th>借阅时间</th> <th>管理员签名</th> <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% user.books.forEach(function(book){ %>
+            <% if (book.alert){ %>
+            <tr class="danger">
+            <% } else { %>
+            <tr>
+            <% } %>
+              <td><%= book.title %></td>    <td><%= book.time %></td>   <td><%= book.admin %></td>
+              <td> nbsp; </td>  
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+  </div>
+  <br/>
+
+  <h2>科幻书柜</h2><hr />
+	<div>
+		<table class="table table-striped">
+  			<thead>
+  			<tr><th>#</th><th>书籍</th><th>借阅状态</th></tr>
+  				<tbody>
+  					<tr><th>1</th><td>《三体·一》</td><td>入藏</td></tr>
+  					<tr><th>2</th><td>《三体·二》</td><td>入藏</td></tr>
+  					<tr><th>3</th><td>《三体·三》</td><td>入藏</td></tr>
+  				</tbody>
+  			</thead>
+		</table>
+	</div>
+</div>

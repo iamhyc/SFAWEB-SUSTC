@@ -1,0 +1,46 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<script type="text/javascript" src="/javascripts/game_main.js"></script>
+	<div class="container" style="padding-top:10%;">
+		<!--####level choose part####-->
+		<div class="text-center entrance" style="padding-left:15%;max-width:80%;">
+			<h2>Here is a game~<small>&nbsp;Level chose</small></h2>
+			<br/>
+			<div class="container" style="max-width:60%">
+				<button type="button" id="easy" class="level0 btn btn-default btn-lg btn-block" onclick="easyEn()">Level Easy</button>
+				<br />
+				<button type="button" id="hard" class="level0 btn btn-info btn-lg btn-block" onclick="hardEn()">Level Hard</button>
+				<br />
+				<button type="button" id="exnm" class="level0 btn btn-danger btn-lg btn-block" onclick="exnmEn()">Level NightMare</button>
+			</div>
+		</div>
+		<!--####End for level choose part####-->
+
+
+		<!--Main part of the game-->
+		<div class="hide container text-center Main" style="max-width:80%;">
+
+
+			<div class="container jumbotron details" style="max-width:100%;">
+				<h2>游戏说明<small id="level0"></small></h2>
+				<p id="content"></p>
+				<button type="button" id="start" class="btn btn-default btn-lg btn-block" >START</button>
+			</div>
+
+			<div class="hide game container text-center" id="gameBody" style="max-width:100%">
+				<h1 id="level1"></h1>
+
+				<div id="block"></div>
+
+				<div id="answer" class="hide container text-center" style="max-width:100%">
+				</div>
+			</div>
+
+
+			<nav class="navbar navbar-default navbar-fixed-bottom">
+  				<div class="container">
+  					<button type="button" id="reset" class="btn btn-default btn btn-block navbar-btn">Back to Menu</button>
+  				</div>
+			</nav>
+		</div>
+		<!--END of main part of the game-->
+	</div>

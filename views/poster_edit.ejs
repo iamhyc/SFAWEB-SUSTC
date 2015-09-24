@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/editor/themes/simple/simple.css" />
+<script charset="utf-8" src="/editor/kindeditor.js"></script>
+<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+<script>
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#post', {
+                  items: [
+                  'source', '|', 'undo', 'redo', '|', 'preview', 'template', 'cut', 'copy', 'paste','plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright','justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent',   'subscript','superscript', 'clearhtml', 'quickformat',  '|', 'fullscreen', '/','formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold','italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage', 'insertfile', 'table', 'hr', 'emoticons', 'pagebreak','link', 
+                  ],
+                  height:"350px",
+                  themeType: 'simple',
+                  cssPath : '/css/index.css',
+                  uploadJson: '/posters/uploadImg'
+                });
+        });
+
+        function save(){
+          var html = editor.html();
+          alert(html);
+          editor.sync();
+        }
+
+</script>
+
+<div class="container" onload="alert('yes')">
+  <div class="col-md-8 col-md-offset-1">
+    <form class="form-horizontal" method="post">
+      <div class="form-group">
+        <label for="InputTitle">Title</label>
+        <input type="text" class="form-control" name="title" autocomplete="off" placeholder="Title">
+      </div>
+  
+      <div class="form-group">
+        <label for="InputInfo">Description Tab (split by [space])</label>
+        <input type="text" class="form-control" name="info" autocomplete="off" placeholder="No more than 5 words per Tab">
+      </div>
+
+      <div class="form-group">
+        <label for="InputImg">Image_path</label>
+        <input type="text" class="form-control" name="img_path" autocomplete="off" placeholder="/images/[imgName + formatDate + extName]">
+      </div>
+     
+      <div class="form-group">
+        <label for="InputContent"></label>
+        <textarea class="form-control" id="post" name="content" autocomplete="off"></textarea>
+      </div>
+      <br />
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</div>
